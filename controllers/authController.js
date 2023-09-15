@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const authService = require('../services/authService');
+const {isAuth} = require('../middlewares/authMiddleware')
 
 router.get('/login', (req, res) => {
    res.render('auth/login');
@@ -26,4 +27,11 @@ router.post('/register', async (req, res) => {
 
    res.redirect('/login')
 });
+
+router.get('/logout', isAuth, (req, res) => {
+   res.clearCookie('auth');
+   res.redirect('/')
+});
+//isAuth is using tho check are u loggedn in befor to log u out
+
 module.exports = router;
