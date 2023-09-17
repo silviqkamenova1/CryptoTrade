@@ -24,4 +24,5 @@ exports.authentication = async (req, res, next) =>{
     if(!req.user) {
         res.redirect('/')
     }
+    next()
  }

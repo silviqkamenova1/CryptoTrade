@@ -6,7 +6,7 @@ const { getErrorMessage } = require('../utils/errorutils')
 
 router.get('/catalog', async (req, res) => {
     const crypto = await cryptoService.getAll().lean();
-    //TO DO....delete the valu of crypto
+    //TO DO....delete the value of crypto
     res.render('crypto/catalog', { crypto: [1] })
 })
 
