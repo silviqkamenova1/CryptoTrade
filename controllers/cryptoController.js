@@ -6,9 +6,13 @@ const { getErrorMessage } = require('../utils/errorutils')
 
 router.get('/catalog', async (req, res) => {
     const crypto = await cryptoService.getAll().lean();
-    res.render('crypto/catalog', { crypto })
+    //TO DO....delete the valu of crypto
+    res.render('crypto/catalog', { crypto: [1] })
 })
 
+router.get('/:cryptoId/details', (req, res) => {
+    res.render('crypto/details')
+});
 
 router.get('/create', isAuth, (req, res) => {
     res.render('crypto/create');
@@ -25,6 +29,7 @@ router.post('/create', isAuth, async (req, res) => {
 
     res.redirect('crypto/catalog');
 });
+
 
 
 module.exports = router;
