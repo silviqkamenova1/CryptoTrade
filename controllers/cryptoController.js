@@ -5,13 +5,17 @@ const cryptoService = require('../services/cryptoService');
 const { getErrorMessage } = require('../utils/errorutils')
 
 router.get('/catalog', async (req, res) => {
-    const crypto = await cryptoService.getAll().lean();
-    //TO DO....delete the value of crypto
-    res.render('crypto/catalog', { crypto: [1] })
+    const crypto = await cryptoService.getAll();
+ 
+    res.render('crypto/catalog', { crypto })
 })
 
-router.get('/:cryptoId/details', (req, res) => {
-    res.render('crypto/details')
+router.get('/:cryptoId/details', async (req, res) => {
+    const crypto = await cryptoService.getOne(req.params.cryptoId);
+
+    const isOwner = crypto.owner == req.user?._id;
+    // or to transform object crypto.owner to string(toString())
+    res.render('crypto/details', { crypto, isOwner })
 });
 
 router.get('/create', isAuth, (req, res) => {
@@ -27,7 +31,7 @@ router.post('/create', isAuth, async (req, res) => {
         return res.status(400).render('crypto/create', {error: getErrorMessage(error)})
     }
 
-    res.redirect('crypto/catalog');
+    res.redirect('/crypto/catalog');
 });
 
 

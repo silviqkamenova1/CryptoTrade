@@ -13,7 +13,7 @@ const cryptoSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    descripption: {
+    description: {
         type: String,
         required: true,
     },

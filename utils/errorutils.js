@@ -1,5 +1,5 @@
 function getFirstMongooseError(error){
-    const firstError = Object.валуес(error.errors)[0].message;
+    const firstError = Object.values(error.errors)[0].message;
 
     return firstError;
 }
