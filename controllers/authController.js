@@ -33,6 +33,7 @@ router.post('/register', async (req, res) => {
 
       res.cookie('auth', token);
       res.redirect('/');
+      //////render
    } catch (error) {
       res.status(400).render('auth/register', {error: getErrorMessage(error)})
    }

@@ -78,7 +78,7 @@ router.post('/create', isAuth, async (req, res) => {
 router.get('/:cryptoId/delete', isAuth, async (req, res) => {
 
     await cryptoService.delete(req.params.cryptoId);
-    res.render('/crypto/catalog')
+    res.redirect('/crypto/catalog')
 
 });
 
